@@ -1,0 +1,4 @@
+// pixels to rems 
+@function pxToRem($px) {
+  @return $px / 32px * 1rem;
+}
