@@ -1,3 +1,42 @@
-.cal-tab{
-  color: red
+@import "../../common/scss/pxToRem.scss";
+.cal-tab-wrap{
+  width: pxToRem(320px);
+  overflow-x: hidden;
+}
+.cal-tab-head{
+display:flex;
+background-color: #f6f6f6;
+li{
+  box-sizing: border-box;
+  line-height: 35px;
+  width: 50%;
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 2px solid transparent;
+  font-size: 14px;
+}
+li.active{
+  border-color: #ff552e;
+}
+}
+.cal-tab-cont{
+  width: 2*pxToRem(320px);
+  display: flex;
+  flex-wrap: nowrap;
+  .tab-item {
+    height: 200px;
+    width: pxToRem(320px);
+    position: relative;
+    transition-property: transform;
+    // left: 0px;
+    transition-duration: 300ms;
+    transform: translate(0px, 0px) translateZ(0px);
+  }
+  section:first-child{
+    background-color: red
+  }
+  section:last-child{
+    background-color: blue
+  }
 }

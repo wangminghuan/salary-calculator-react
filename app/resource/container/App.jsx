@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import pubSub from "PubSub";
 import CalHeaderTab from "../components/CalHeaderTab";
+import CalSalary from "../components/CalSalary";
+import CalYearend from "../components/CalYearend";
+import CalSubmit from "../components/CalSubmit";
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
 export default class extends Component{
@@ -11,7 +14,12 @@ export default class extends Component{
   }
   render() {
     return (
+      <div>
       <CalHeaderTab />
+      {/* <CalSalary />
+      <CalYearend /> */}
+      <CalSubmit />
+    </div>
     )
   }
 }

@@ -1,0 +1,30 @@
+@import "../../common/scss/pxToRem.scss";
+.cal-submit-wrap{
+  position: relative;
+  padding: 30px pxToRem(16px);
+  .submit{
+      display: block;
+      width: 100%;
+      background-color: #FF552E;
+      color: #fff;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 40px;
+      border-radius: 2px;
+  }
+  .tips{
+    position: absolute;
+    margin: 0 auto;
+    line-height: 35px;
+    padding:0 10px;
+    background: rgba(0,0,0,0.80);
+    border-radius: 3px;
+    color: #fff;
+    top:-20px;
+    left:0;
+    right: 0;
+    width: 200px;
+  }
+
+}
