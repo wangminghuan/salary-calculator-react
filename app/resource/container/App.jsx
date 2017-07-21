@@ -15,7 +15,10 @@ export default class extends Component{
   render() {
     return (
       <div>
-      <CalHeaderTab />
+      <CalHeaderTab>
+         <CalSalary name="工资" />
+         <CalYearend name="年终奖" />
+      </CalHeaderTab>
       {/* <CalSalary />
       <CalYearend /> */}
       <CalSubmit />

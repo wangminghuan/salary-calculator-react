@@ -25,18 +25,11 @@ li.active{
   display: flex;
   flex-wrap: nowrap;
   .tab-item {
-    height: 200px;
     width: pxToRem(320px);
     position: relative;
     transition-property: transform;
     // left: 0px;
     transition-duration: 300ms;
     transform: translate(0px, 0px) translateZ(0px);
-  }
-  section:first-child{
-    background-color: red
-  }
-  section:last-child{
-    background-color: blue
   }
 }

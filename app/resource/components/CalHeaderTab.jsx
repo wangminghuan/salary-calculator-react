@@ -39,10 +39,7 @@ export default class extends Component{
     }
   render() {
     return (
-      <TabComponent>
-        <div name="工资" className="tab-item">第一部分</div>
-        <div name="年终奖" className="tab-item">第二部分</div>
-      </TabComponent>
+      <TabComponent>{this.props.children}</TabComponent>
     )
 
   }
