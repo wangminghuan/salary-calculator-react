@@ -1,0 +1,16 @@
+.cal-item-input{
+    position: relative;
+    height: 45px;
+    line-height: 45px;
+    padding:0 15px;
+    border-bottom: 1px solid #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+    input{
+    text-align: right;
+    width: 120px;
+    line-height: 16px;
+    height: 16px;
+    margin-right: 5px;
+    }
+}

@@ -37,6 +37,9 @@ button {
  -webkit-appearance: none;
  border-radius: 0;
 }
+input:focus{
+  border: none;
+}
 input, textarea, select, button, table {
     font-size:inherit;
     font-family:inherit;
@@ -56,7 +59,7 @@ td,th {
 img, fieldset {
     border:0
 }
-ul, ol {
+ul, ol,li {
     list-style:none
 }
 i, em, address {
