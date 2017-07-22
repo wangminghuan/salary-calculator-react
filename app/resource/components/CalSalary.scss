@@ -1,5 +1,26 @@
+@import "../../common/scss/pxToRem.scss";
 .cal-salary-wrap{
   // height: 200px;
   // background-color: blue;
   width: 100%;
+  .item-show-more{
+    em{
+      height: 4px;
+      width: 4px;
+      display: block;
+      margin-top: pxToRem(20px);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+    }
+    .up{
+      border-bottom: 4px solid #D9D9D9;
+    }
+    .down{
+      border-top: 4px solid #D9D9D9;
+    }
+
+  }
+  .hide{
+    display: none
+  }
 }

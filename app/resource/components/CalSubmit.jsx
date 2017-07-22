@@ -5,13 +5,23 @@ export default class extends Component{
   constructor(props){
     super(props);
     this.state={
-      tips:""
+      tips:"",
+      ableSubmit:true
     }
   }
   handleClick=()=>{
-    this.setState({
-      tips:"别调皮哦,请输入准确的工资吧~"
-    })
+    if(this.state.ableSubmit){
+      this.setState({
+        tips:"别调皮哦,请输入准确的工资吧~",
+        ableSubmit:false
+      })
+      setTimeout(()=>{
+        this.setState({
+          tips:"",
+          ableSubmit:true
+        })
+      },1000)
+   }
   }
   render(){
     return(

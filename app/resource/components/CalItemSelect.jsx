@@ -4,22 +4,33 @@ import "./CalItemSelect.scss";
 export default class extends Component{
   constructor(props){
     super(props);
+    this.state={
+      select:this.props.select
+    }
   }
   handleClick=()=>{
     _pubSub.publish('getInfo',{
-      type:"number",
-      name:"公积金系数",
       isShow:true,
-      max:10,
-      arr:[]
+      index:this.props.index,
+      type:this.props.type,
+      title:this.props.title,
+      maxNum:this.props.maxNum,
+      arr:this.props.arr
         })
   }
   render(){
     return(
       <li className="cal-item item-select" onClick={this.handleClick}>
-          <span>{this.props.name}</span>
-          <div>2%</div>
+          <span>{this.props.title}</span>
+          <div>{this.state.select}</div>
       </li>
     )
+  }
+  componentDidMount(){
+    _pubSub.subscribe('getSelect',(data)=>{
+      data.index==this.props.index && this.setState({
+        select:data.select
+      })
+    })
   }
 }

@@ -4,10 +4,11 @@ export default class extends Component{
   constructor(props){
     super(props);
     this.state={
-      type:"",
-      name:"",
       isShow:false,
-      max:0,
+      index:0,
+      type:"",
+      title:"",
+      maxNum:0,
       arr:[]
     }
   }
@@ -16,13 +17,18 @@ export default class extends Component{
       isShow:false
     })
   }
-  handleClickSelect=(text)=>{
-    alert(text)
+  handleClickSelect=(select)=>{
+    this.handleClickRemove();
+    _pubSub.publish('getSelect',{
+      select:select,
+      index:this.state.index
+    })
+
   }
   render(){
    let renderArr=[];
-    if(this.state.type==="number" && this.state.max){
-      for(let i=this.state.max;i>-1;i--){
+    if(this.state.type==="number" && this.state.maxNum){
+      for(let i=this.state.maxNum;i>-1;i--){
         renderArr.push(i+"%")
       }
     }else{
@@ -33,7 +39,7 @@ export default class extends Component{
       <div className={`cal-select-wrap ${this.state.isShow?"":"hide"}`}>
          <div className="bg-black"></div>
          <div className="select-cont">
-           <p><span>{this.state.name}</span><em onClick={this.handleClickRemove}>取消</em></p>
+           <p><span>{this.state.title}</span><em onClick={this.handleClickRemove}>取消</em></p>
            <ul>
              {renderArr.map((child,index)=>
              <li key={index} onClick={()=>this.handleClickSelect(child)}>{child}</li>
@@ -45,14 +51,15 @@ export default class extends Component{
     )
   }
   componentDidMount(){
-    _pubSub.subscribe('getInfo',function(data){
+    _pubSub.subscribe('getInfo',(data)=>{
      this.setState({
-       type:data.type,
-       name:data.name,
        isShow:data.isShow,
-       max:data.max,
+       index:data.index,
+       type:data.type,
+       title:data.title,
+       maxNum:data.maxNum,
        arr:data.arr
      })
-    }.bind(this))
+    })
   }
 }
