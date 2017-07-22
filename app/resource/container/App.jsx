@@ -4,13 +4,14 @@ import CalHeaderTab from "../components/CalHeaderTab";
 import CalSalary from "../components/CalSalary";
 import CalYearend from "../components/CalYearend";
 import CalSubmit from "../components/CalSubmit";
+import CalSelectWrap from "../components/CalSelectWrap";
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
 export default class extends Component{
   constructor(props){
   	super(props);
     //建立一个全局变量，用于订阅发布通道
-    //window._pubSub=new pubSub();
+    window._pubSub=new pubSub();
   }
   render() {
     return (
@@ -19,9 +20,14 @@ export default class extends Component{
          <CalSalary name="工资" />
          <CalYearend name="年终奖" />
       </CalHeaderTab>
-      {/* <CalSalary />
-      <CalYearend /> */}
+
       <CalSubmit />
+      <CalSelectWrap
+        name={"公积金系数"}
+        type={"number"}
+        max={10}
+        arr={[]}
+      />
     </div>
     )
   }

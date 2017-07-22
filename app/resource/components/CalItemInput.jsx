@@ -7,7 +7,7 @@ export default class extends Component{
   }
   render(){
     return(
-      <li className="cal-item-input">
+      <li className="cal-item item-input">
         <span>{this.props.name}</span>
         <div>
           <input type="number" placeholder={"请输入"+this.props.name} /><em>元</em>

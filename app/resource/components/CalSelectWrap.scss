@@ -1,0 +1,61 @@
+.hide {
+  display: none;
+}
+
+.cal-select-wrap {
+  .bg-black {
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    opacity: 0.34;
+    background-color: #4A4A4A;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .select-cont {
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 209px;
+    background-color: #fff;
+
+    p {
+      height: 45px;
+      line-height: 45px;
+      padding: 0 15px;
+      text-align: center;
+      color: #333;
+      position: relative;
+    }
+
+    span {}
+
+    em {
+      color: #999;
+      position: absolute;
+      left: 15px;
+      top: 0;
+    }
+
+    ul {
+      height: 164px;
+      padding: 0 15px;
+      overflow: scroll;
+    }
+
+    li {
+      position: relative;
+      height: 40px;
+      font-size: 13px;
+      line-height: 40px;
+      text-align: center;
+      width: 100%;
+      border-top: 1px solid #F3F3F3;
+      color: #333;
+    }
+  }
+}

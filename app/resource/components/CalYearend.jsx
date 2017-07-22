@@ -1,9 +1,13 @@
 import React, {Component} from "react";
 import "./CalYearend.scss";
+import CalItemInput from "./CalItemInput";
 export default class extends Component{
   render(){
     return(
-      <div className="cal-yearend-wrap">我是年终奖</div>
+      <ul className="cal-yearend-wrap">
+        <CalItemInput name="税前月薪" />
+        <CalItemInput name="税前年终奖" />
+      </ul>
     )
   }
 }

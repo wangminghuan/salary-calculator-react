@@ -1,16 +1,20 @@
-.cal-item-input{
-    position: relative;
-    height: 45px;
-    line-height: 45px;
-    padding:0 15px;
-    border-bottom: 1px solid #f3f3f3;
-    display: flex;
-    justify-content: space-between;
-    input{
-    text-align: right;
-    width: 120px;
-    line-height: 16px;
-    height: 16px;
-    margin-right: 5px;
-    }
+@import "../../common/scss/pxToRem.scss";
+.cal-item{
+  font-size: 14px;
+  position: relative;
+  height: pxToRem(45px);
+  line-height: pxToRem(45px);
+  padding:0 15px;
+  border-bottom: 1px solid #f3f3f3;
+  display: flex;
+  justify-content: space-between;
+}
+.item-input{
+  input{
+  text-align: right;
+  width: pxToRem(120px);
+  line-height: pxToRem(16px);
+  height: pxToRem(16px);
+  margin-right: 5px;
+  }
 }

@@ -10,13 +10,14 @@ class TabComponent extends Component{
         }
     }
   render() {
+    const winWidth=document.documentElement.clientWidth;
     return (
       <section className="cal-tab-wrap">
       <ul className="cal-tab-head">
         {React.Children.map(this.props.children, (item,index)=>
           <li onClick={()=>{this.setState({
             current:index,
-            itemStyle:index===1?'translate(-320px, 0px) translateZ(0px)':'translate(0px, 0px) translateZ(0px)'})}}
+            itemStyle:index===1?'translate(-'+winWidth+'px, 0px) translateZ(0px)':'translate(0px, 0px) translateZ(0px)'})}}
             className={this.state.current===index?"active":null}>
             {item.props.name}
           </li>
