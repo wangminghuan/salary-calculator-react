@@ -1,23 +1,22 @@
 import React, {Component} from "react";
-import "./CalItemCity.scss";
+import "./CalCityWrap.scss";
 
 export default class extends Component{
   constructor(props){
     super(props);
-    this.cityArr=["北京","上海","成都"];
     this.state={
       isShowWrap:false,
-      current:"北京"
+      position:""
     }
   }
-  handleClickShowWrap=()=>{
-    this.setState({
-      isShowWrap:true
+  handleClickSelect=(select,index)=>{
+    //发布信息，CalItemSelect组件接收，展示选择项
+    _pubSub.publish('getSelect',{
+      select:select
     })
-  }
-  handleClickSelect=(text)=>{
-    this.setState({
-      current:text
+    //通知app组件，目前哪个城市的config生效
+    _pubSub.publish('getConfig',{
+      index:index
     })
     this.handleClickBack();
   }
@@ -28,13 +27,17 @@ export default class extends Component{
   }
   render(){
     return(
-      <li className="cal-item item-select">
-      <span>当前城市</span>
-      <div onClick={this.handleClickShowWrap}>{this.state.current}</div>
       <ul className={`cal-item-city ${this.state.isShowWrap?"":"hide"}`}>
         <li className="go-back" onClick={this.handleClickBack}>返回上一级</li>
-        {this.cityArr.map((child,index)=><li key={index} onClick={()=>this.handleClickSelect(child)}>{child}</li>)}
+        {this.props.cityArr.map((child,index)=><li key={index} onClick={()=>this.handleClickSelect(child,index)}>{child}</li>)}
       </ul>
-      </li>
   )}
+  componentDidMount(){
+    //监听CalItemSelect组件发送的信息，来显示组件
+    _pubSub.subscribe("getCityInfo",(data)=>{
+      this.setState({
+        isShowWrap:data.isShow
+      })
+    })
+  }
 }

@@ -5,6 +5,7 @@ import CalHeaderTab from "../components/CalHeaderTab";
 import CalSalary from "../components/CalSalary";
 import CalYearend from "../components/CalYearend";
 import CalSubmit from "../components/CalSubmit";
+import CalCityWrap from "../components/CalCityWrap";
 import CalSelectWrap from "../components/CalSelectWrap";
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
@@ -15,25 +16,36 @@ export default class extends Component{
     window._pubSub=new pubSub();
     // this.cityArr=config.map((child,index)=>console.log(child.name))
     this.state={
-      currentData:config[0]
+      currentData:config[1]
     }
   }
-  // getCity=(arr)=>{
-  //   let result=[];
-  //   arr.map(()=>{
-  //     result.push(child.name)
-  //   })
-  // }
   render() {
     return (
       <div>
       <CalHeaderTab>
-         <CalSalary name="工资" currentData={this.state.currentData}  />
-         <CalYearend name="年终奖" currentData={this.state.currentData} />
+         <CalSalary
+           name="工资"
+           currentData={this.state.currentData}
+         />
+         <CalYearend
+           name="年终奖"
+           currentData={this.state.currentData}
+         />
       </CalHeaderTab>
+
       <CalSubmit />
+      <CalCityWrap
+      cityArr={config.map((child,index)=>child.name)}
+     />
       <CalSelectWrap />
     </div>
     )
+  }
+  componentDidMount(){
+    _pubSub.subscribe("getConfig",(data)=>{
+      this.setState({
+        currentData:config[data.index]
+      })
+    })
   }
 }

@@ -5,7 +5,7 @@ export default class extends Component{
     super(props);
     this.state={
       isShow:false,
-      index:0,
+      position:"",
       title:"",
       maxNum:0,
     }
@@ -19,7 +19,7 @@ export default class extends Component{
     this.handleClickRemove();
     _pubSub.publish('getSelect',{
       select:select,
-      index:this.state.index
+      position:this.state.position
     })
 
   }
@@ -50,7 +50,7 @@ export default class extends Component{
     _pubSub.subscribe('getInfo',(data)=>{
      this.setState({
        isShow:data.isShow,
-       index:data.index,
+       position:data.position,
        title:data.title,
        maxNum:data.maxNum
      })

@@ -6,7 +6,8 @@ export default class extends Component{
   constructor(props){
     super(props);
     this.state={
-      isShowMore:false
+      isShowMore:false,
+      currentData:this.props.currentData
     }
   }
   handleClickShowMore=()=>{
@@ -17,18 +18,23 @@ export default class extends Component{
   render(){
     return(
       <ul className="cal-salary-wrap">
+        <CalItemSelect
+          type={"city"}
+          select={this.state.currentData.name}
+          title={"当前城市"}
+        />
         <CalItemInput name="税前月薪" />
         <li className="cal-item item-show-more" onClick={this.handleClickShowMore}><span>更多</span><em className={this.state.isShowMore?"up":"down"}></em></li>
         <ul className={this.state.isShowMore?null:"hide"}>
         <CalItemSelect
-          index={1}
-          select={this.props.currentData.housing.person}
+          position={1}
+          select={this.state.currentData.housing.person}
           title={"个人公积金系数"}
           maxNum={12}
         />
         <CalItemSelect
-          index={2}
-          select={this.props.currentData.housing.company}
+          position={2}
+          select={this.state.currentData.housing.company}
           title={"公司公积金系数"}
           maxNum={12}
         />
@@ -37,5 +43,10 @@ export default class extends Component{
         </ul>
       </ul>
     )
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      currentData:nextProps.currentData
+    })
   }
 }
