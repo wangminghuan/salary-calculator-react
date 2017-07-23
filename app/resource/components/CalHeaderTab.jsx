@@ -7,17 +7,24 @@ class TabComponent extends Component{
         this.state={
           current:0,
           itemStyle:{}
-        }
+        };
+        this.winWidth=document.documentElement.clientWidth;
     }
+  handleClick=(index)=>{
+    this.setState({
+      current:index,
+      itemStyle:index===1?'translate(-'+this.winWidth+'px, 0px) translateZ(0px)':'translate(0px, 0px) translateZ(0px)'
+    })
+    _pubSub.publish("tabIndex",{
+      current:index
+    })
+  }
   render() {
-    const winWidth=document.documentElement.clientWidth;
     return (
       <section className="cal-tab-wrap">
       <ul className="cal-tab-head">
         {React.Children.map(this.props.children, (item,index)=>
-          <li onClick={()=>{this.setState({
-            current:index,
-            itemStyle:index===1?'translate(-'+winWidth+'px, 0px) translateZ(0px)':'translate(0px, 0px) translateZ(0px)'})}}
+          <li onClick={()=>this.handleClick(index)}
             className={this.state.current===index?"active":null}>
             {item.props.name}
           </li>

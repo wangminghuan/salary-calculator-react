@@ -18,22 +18,6 @@ export default class extends Component{
     this.state={
       currentData:config[0]
     };
-    this.salary={
-      name:"税前月薪",
-      type:"salary"
-    };
-    this.personHoseCoef={
-      name:"个人公积金系数",
-      type:"person"
-    };
-    this.companyHoseCoef={
-      name:"公司公积金系数",
-      type:"company"
-    };
-    this.salary={
-      name:"税前月薪",
-      type:"salary"
-    };
   }
   render() {
     return (
@@ -41,6 +25,7 @@ export default class extends Component{
       <CalHeaderTab>
          <CalSalary
            name="工资"
+           itemData={this.salary}
            currentData={this.state.currentData}
          />
          <CalYearend

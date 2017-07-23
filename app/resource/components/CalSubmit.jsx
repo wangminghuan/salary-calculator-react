@@ -5,21 +5,16 @@ export default class extends Component{
   constructor(props){
     super(props);
     this.state={
+      currentTab:0,
       tips:"",
       currentData:this.props.currentData,
       ableSubmit:true,
-      salary:0,
       userSalaySelect:{},
       userSalayInput:{}
-      // company:"",
-      // person:"",
-      // houseNum:0,
-      // socialNum:0
     }
   }
   handleClick=()=>{
-    console.log(this.state);
-    if(this.state.ableSubmit){
+    if(this.state.ableSubmit && !this.state.userSalayInput.salary){
       this.setState({
         tips:"别调皮哦,请输入准确的工资吧~",
         ableSubmit:false
@@ -30,7 +25,8 @@ export default class extends Component{
           ableSubmit:true
         })
       },1000)
-      return false;
+   }else{
+    console.log(this.state);
    }
   }
   render(){
@@ -56,6 +52,12 @@ export default class extends Component{
       newData[data.type]=data.value;
         this.setState({
           userSalayInput:newData
+        })
+    })
+
+    _pubSub.subscribe("tabIndex",(data)=>{
+        this.setState({
+          currentTab:data.current
         })
     })
   }

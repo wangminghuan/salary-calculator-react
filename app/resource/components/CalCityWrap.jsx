@@ -11,11 +11,7 @@ export default class extends Component{
     }
   }
   handleClickSelect=(select,index)=>{
-    // //发布信息，CalItemSelect组件接收，展示选择项
-    // _pubSub.publish('getSelect',{
-    //   select:select
-    // })
-    //通知app组件，目前哪个城市的config生效
+    // 发布信息，CalItemSelect组件接收，展示选择项
     _pubSub.publish('getSelect',{
       select:select,
       type:this.state.type,
