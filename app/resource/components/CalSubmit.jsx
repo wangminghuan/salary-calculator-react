@@ -6,10 +6,19 @@ export default class extends Component{
     super(props);
     this.state={
       tips:"",
-      ableSubmit:true
+      currentData:this.props.currentData,
+      ableSubmit:true,
+      salary:0,
+      userSalaySelect:{},
+      userSalayInput:{}
+      // company:"",
+      // person:"",
+      // houseNum:0,
+      // socialNum:0
     }
   }
   handleClick=()=>{
+    console.log(this.state);
     if(this.state.ableSubmit){
       this.setState({
         tips:"别调皮哦,请输入准确的工资吧~",
@@ -21,6 +30,7 @@ export default class extends Component{
           ableSubmit:true
         })
       },1000)
+      return false;
    }
   }
   render(){
@@ -30,5 +40,28 @@ export default class extends Component{
         <p className="tips">{this.state.tips}</p>
       </div>
     )
+  }
+  componentDidMount(){
+    _pubSub.subscribe('getSelect',(data)=>{
+      if(!data.type || data.type=="city") return;
+      let newData=this.state.userSalaySelect;
+      newData[data.type]=data.select;
+       this.setState({
+         userSalaySelect:newData
+       })
+    })
+
+    _pubSub.subscribe("getInput",(data)=>{
+      let newData=this.state.userSalayInput;
+      newData[data.type]=data.value;
+        this.setState({
+          userSalayInput:newData
+        })
+    })
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      currentData:nextProps.currentData
+    })
   }
 }

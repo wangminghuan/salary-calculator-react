@@ -23,23 +23,32 @@ export default class extends Component{
           select={this.state.currentData.name}
           title={"当前城市"}
         />
-        <CalItemInput name="税前月薪" />
+        <CalItemInput
+          name={"税前月薪"}
+          type={"salary"}
+        />
         <li className="cal-item item-show-more" onClick={this.handleClickShowMore}><span>更多</span><em className={this.state.isShowMore?"up":"down"}></em></li>
         <ul className={this.state.isShowMore?null:"hide"}>
         <CalItemSelect
-          position={1}
+          type={"person"}
           select={this.state.currentData.housing.person}
           title={"个人公积金系数"}
           maxNum={12}
         />
         <CalItemSelect
-          position={2}
+          type={"company"}
           select={this.state.currentData.housing.company}
           title={"公司公积金系数"}
           maxNum={12}
         />
-        <CalItemInput name="公积金基数" />
-        <CalItemInput name="社保基数" />
+        <CalItemInput
+          name={"公积金基数"}
+          type={"houseNum"}
+        />
+        <CalItemInput
+          name={"社保基数"}
+          type={"socialNum"}
+        />
         </ul>
       </ul>
     )

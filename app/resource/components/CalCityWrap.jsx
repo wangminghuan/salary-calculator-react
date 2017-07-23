@@ -6,16 +6,19 @@ export default class extends Component{
     super(props);
     this.state={
       isShowWrap:false,
-      position:""
+      type:"",
+      index:0
     }
   }
   handleClickSelect=(select,index)=>{
-    //发布信息，CalItemSelect组件接收，展示选择项
-    _pubSub.publish('getSelect',{
-      select:select
-    })
+    // //发布信息，CalItemSelect组件接收，展示选择项
+    // _pubSub.publish('getSelect',{
+    //   select:select
+    // })
     //通知app组件，目前哪个城市的config生效
-    _pubSub.publish('getConfig',{
+    _pubSub.publish('getSelect',{
+      select:select,
+      type:this.state.type,
       index:index
     })
     this.handleClickBack();
@@ -34,9 +37,10 @@ export default class extends Component{
   )}
   componentDidMount(){
     //监听CalItemSelect组件发送的信息，来显示组件
-    _pubSub.subscribe("getCityInfo",(data)=>{
-      this.setState({
-        isShowWrap:data.isShow
+    _pubSub.subscribe("getInfo",(data)=>{
+      data.type==="city"&& this.setState({
+        isShowWrap:data.isShow,
+        type:data.type
       })
     })
   }

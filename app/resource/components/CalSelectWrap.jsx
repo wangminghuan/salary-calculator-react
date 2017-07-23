@@ -5,7 +5,7 @@ export default class extends Component{
     super(props);
     this.state={
       isShow:false,
-      position:"",
+      type:"",
       title:"",
       maxNum:0,
     }
@@ -19,7 +19,7 @@ export default class extends Component{
     this.handleClickRemove();
     _pubSub.publish('getSelect',{
       select:select,
-      position:this.state.position
+      type:this.state.type
     })
 
   }
@@ -48,9 +48,9 @@ export default class extends Component{
   }
   componentDidMount(){
     _pubSub.subscribe('getInfo',(data)=>{
-     this.setState({
+     data.type!=="city" && this.setState({
        isShow:data.isShow,
-       position:data.position,
+       type:data.type,
        title:data.title,
        maxNum:data.maxNum
      })
