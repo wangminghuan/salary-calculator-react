@@ -6,10 +6,8 @@ export default class extends Component{
     this.state={
       isShow:false,
       index:0,
-      type:"",
       title:"",
       maxNum:0,
-      arr:[]
     }
   }
   handleClickRemove=()=>{
@@ -26,13 +24,11 @@ export default class extends Component{
 
   }
   render(){
-   let renderArr=[];
-    if(this.state.type==="number" && this.state.maxNum){
+    let renderArr=[];
+    if(typeof this.state.maxNum=="number"){
       for(let i=this.state.maxNum;i>-1;i--){
         renderArr.push(i+"%")
       }
-    }else{
-      renderArr=this.state.arr
     }
     return(
       <section>
@@ -55,10 +51,8 @@ export default class extends Component{
      this.setState({
        isShow:data.isShow,
        index:data.index,
-       type:data.type,
        title:data.title,
-       maxNum:data.maxNum,
-       arr:data.arr
+       maxNum:data.maxNum
      })
     })
   }

@@ -12,10 +12,8 @@ export default class extends Component{
     _pubSub.publish('getInfo',{
       isShow:true,
       index:this.props.index,
-      type:this.props.type,
       title:this.props.title,
       maxNum:this.props.maxNum,
-      arr:this.props.arr
         })
   }
   render(){
