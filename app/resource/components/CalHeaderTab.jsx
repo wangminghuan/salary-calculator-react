@@ -6,7 +6,8 @@ class TabComponent extends Component{
         super(props);
         this.state={
           current:0,
-          itemStyle:{}
+          itemStyle:{},
+          curTabConHg:0,
         };
         this.winWidth=document.documentElement.clientWidth;
     }
@@ -30,14 +31,21 @@ class TabComponent extends Component{
           </li>
         )}
       </ul>
-      <div className="cal-tab-cont">
+      <div ref="section" className="cal-tab-cont" style={this.state.current==1?{"height":this.state.curTabConHg}:null}>
         {React.Children.map(this.props.children, (item,index)=>
-          <section className="tab-item" style={{transform:this.state.itemStyle}}>{item}</section>
+          <section  className="tab-item" style={{transform:this.state.itemStyle}}>{item}</section>
         )}
       </div>
     </section>
     )
 
+  }
+  componentDidMount(){
+    const wrap=this.refs.section;
+    this.setState({
+      curTabConHg:wrap.getElementsByTagName("section")[1].offsetHeight
+    })
+    
   }
 }
 

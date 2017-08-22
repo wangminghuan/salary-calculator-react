@@ -7,7 +7,8 @@ export default class extends Component{
     super(props);
     this.state={
       isShowMore:false,
-      currentData:this.props.currentData
+      currentData:this.props.currentData,
+      itemHight:0
     }
   }
   handleClickShowMore=()=>{
@@ -27,8 +28,8 @@ export default class extends Component{
           name={"税前月薪"}
           type={"salary"}
         />
-        <li className="cal-item item-show-more" onClick={this.handleClickShowMore}><span>更多</span><em className={this.state.isShowMore?"up":"down"}></em></li>
-        <ul className={this.state.isShowMore?null:"hide"}>
+        <li ref="itemLi" className="cal-item item-show-more" onClick={this.handleClickShowMore}><span>更多</span><em className={this.state.isShowMore?"up":"down"}></em></li>
+        <ul className="more-wrap" style={this.state.isShowMore?{"height":"180px"}:{"height":"0"}}>
         <CalItemSelect
           type={"person"}
           select={this.state.currentData.housing.person}
@@ -56,6 +57,11 @@ export default class extends Component{
   componentWillReceiveProps(nextProps){
     this.setState({
       currentData:nextProps.currentData
+    })
+  }
+  componentDidMount(){
+    this.setState({
+      itemHight:this.refs.itemLi.offsetHeight
     })
   }
 }

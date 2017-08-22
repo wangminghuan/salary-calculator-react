@@ -24,6 +24,7 @@ li.active{
   width: 2*pxToRem(320px);
   display: flex;
   flex-wrap: nowrap;
+  overflow: hidden;
   .tab-item {
     width: pxToRem(320px);
     position: relative;

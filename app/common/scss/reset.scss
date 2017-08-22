@@ -40,6 +40,9 @@ button {
 input:focus{
   border: none;
 }
+input{
+    outline: none;
+}
 input, textarea, select, button, table {
     font-size:inherit;
     font-family:inherit;

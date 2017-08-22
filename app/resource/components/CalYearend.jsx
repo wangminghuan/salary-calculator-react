@@ -19,7 +19,7 @@ export default class extends Component{
         />
         <CalItemInput
           name={"税前月薪"}
-          type={"salary_year"}
+          type={"salary"}
         />
         <CalItemInput
           name={"税前年终奖"}
