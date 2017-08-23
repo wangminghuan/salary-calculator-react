@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { BrowserRouter as Router, Route, Link, hashHistory} from 'react-router-dom';
 import pubSub from "PubSub";
 import config from "../../common/config/config";
 import CalHeaderTab from "../components/CalHeaderTab";
@@ -7,9 +8,10 @@ import CalYearend from "../components/CalYearend";
 import CalSubmit from "../components/CalSubmit";
 import CalCityWrap from "../components/CalCityWrap";
 import CalSelectWrap from "../components/CalSelectWrap";
+import SalaryResult from "../components/SalaryResult";
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
-export default class extends Component{
+ class  App extends Component{
   constructor(props){
   	super(props);
     //建立一个全局变量，用于订阅发布通道
@@ -41,6 +43,7 @@ export default class extends Component{
       cityArr={config.map((child,index)=>child.name)}
      />
       <CalSelectWrap />
+      <Link to="/salary">点我跳转到计算结果页面</Link>
     </div>
     )
   }
@@ -51,4 +54,21 @@ export default class extends Component{
       })
     })
   }
+}
+
+//路由分发
+export default class extends Component{
+   constructor(props){
+     super(props)
+   }
+   render(){
+     return(
+      <Router>
+        <div>
+          <Route exact path="/" component={App}/>
+          <Route path="/salary" component={SalaryResult}/>
+        </div>
+      </Router>
+     )
+   }
 }
