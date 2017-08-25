@@ -29,7 +29,7 @@ export default class extends Component{
           type={"salary"}
         />
         <li ref="itemLi" className="cal-item item-show-more" onClick={this.handleClickShowMore}><span>更多</span><em className={this.state.isShowMore?"up":"down"}></em></li>
-        <ul className="more-wrap" style={this.state.isShowMore?{"height":"180px"}:{"height":"0"}}>
+        <ul className="more-wrap" style={this.state.isShowMore?{"height":4*this.state.itemHight+"px"}:{"height":"0"}}>
         <CalItemSelect
           type={"person"}
           select={this.state.currentData.housing.person}
