@@ -26,6 +26,7 @@ export default class extends Component{
         })
       },1000)
    }else{
+    this.context.router.push("/salary")
     console.log(this.state);
    }
   }

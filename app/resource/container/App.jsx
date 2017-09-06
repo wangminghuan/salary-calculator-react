@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { BrowserRouter as Router, Route, Link, hashHistory} from 'react-router-dom';
+import { HashRouter as Router, Route, Link, hashHistory} from 'react-router-dom';
 import pubSub from "PubSub";
 import config from "../../common/config/config";
 import CalHeaderTab from "../components/CalHeaderTab";
