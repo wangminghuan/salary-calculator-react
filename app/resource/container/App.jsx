@@ -9,6 +9,7 @@ import CalSubmit from "../components/CalSubmit";
 import CalCityWrap from "../components/CalCityWrap";
 import CalSelectWrap from "../components/CalSelectWrap";
 import SalaryResult from "../components/SalaryResult";
+import YearendResult from "../components/YearendResult";
 import initReactFastclick from 'react-fastclick';
 initReactFastclick();
  class  App extends Component{
@@ -53,6 +54,15 @@ initReactFastclick();
         currentData:config[data.index]
       })
     })
+    //监听hash变化，控制历史记录
+    window.addEventListener("hashchange",function(e){
+     if(e.newURL.indexOf("#city")==-1 && e.oldURL.indexOf("#city")>0){
+      _pubSub.publish('getInfo',{
+        isShow:false,
+        type:"city"
+        })
+     }
+    })
   }
 }
 
@@ -67,6 +77,7 @@ export default class extends Component{
         <div>
           <Route exact path="/" component={App}/>
           <Route path="/salary" component={SalaryResult}/>
+          <Route path="/yearend" component={YearendResult}/>
         </div>
       </Router>
      )
