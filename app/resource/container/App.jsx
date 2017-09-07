@@ -44,7 +44,6 @@ initReactFastclick();
       cityArr={config.map((child,index)=>child.name)}
      />
       <CalSelectWrap />
-      <Link to="/salary">点我跳转到计算结果页面</Link>
     </div>
     )
   }

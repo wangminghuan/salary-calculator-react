@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./CalSubmit.scss";
-
-export default class extends Component{
+import PropTypes from "prop-types";
+export default class SubmitComponent extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -26,7 +26,14 @@ export default class extends Component{
         })
       },1000)
    }else{
-    this.context.router.push("/salary")
+     //react-router 4.0+版本吧push方法移动到了history对象下
+     //2.x版本是this.context.router.push("/salary");
+    
+    if(this.state.currentTab==0){
+      this.context.router.history.push("/salary");
+    }else{
+      this.context.router.history.push("/yearend");
+    }
     console.log(this.state);
    }
   }
@@ -68,3 +75,6 @@ export default class extends Component{
     })
   }
 }
+SubmitComponent.contextTypes = {
+  router: PropTypes.object
+};
