@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import "./CalItemSelect.scss";
-
-export default class extends Component{
+import {Link, history} from 'react-router-dom';
+import PropTypes from "prop-types";
+export default class CalItemSelct extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -20,8 +21,20 @@ export default class extends Component{
   render(){
     return(
       <li className="cal-item item-select" onClick={this.handleClick}>
+      {this.props.type=="city"? 
+          <Link to={{
+            pathname: '/city', 
+            state: { cityArr:this.props.cityArr}
+          }}>
           <span>{this.props.title}</span>
-          <div>{this.state.select}</div>
+          <em>{this.state.select}</em>
+          </Link> : 
+          <section >
+            <span>{this.props.title}</span>
+            <em>{this.state.select}</em>
+          </section>
+       }
+          
       </li>
     )
   }
@@ -39,3 +52,6 @@ export default class extends Component{
     })
   }
 }
+CalItemSelct.contextTypes = {
+  router: PropTypes.object
+};

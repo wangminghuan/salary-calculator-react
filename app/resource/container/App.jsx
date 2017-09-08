@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import { HashRouter as Router, Route, Link, hashHistory} from 'react-router-dom';
-import pubSub from "PubSub";
 import config from "../../common/config/config";
 import CalHeaderTab from "../components/CalHeaderTab";
 import CalSalary from "../components/CalSalary";
@@ -14,12 +13,11 @@ import initReactFastclick from 'react-fastclick';
 initReactFastclick();
  class  App extends Component{
   constructor(props){
-  	super(props);
-    //建立一个全局变量，用于订阅发布通道
-    window._pubSub=new pubSub();
-    // this.cityArr=config.map((child,index)=>console.log(child.name))
+    super(props);
+    // this.localData=JSON.parse(JSON.stringify(window.localStorage.getItem("__select")));
+    this.configIndex=isNaN(parseInt(window.localStorage.getItem("__select")))?0:parseInt(window.localStorage.getItem("__select"));
     this.state={
-      currentData:config[0]
+      currentData:config[parseInt(this.configIndex)],
     };
   }
   render() {
@@ -40,9 +38,6 @@ initReactFastclick();
       <CalSubmit
         currentData={this.state.currentData}
       />
-      <CalCityWrap
-      cityArr={config.map((child,index)=>child.name)}
-     />
       <CalSelectWrap />
     </div>
     )
@@ -54,21 +49,22 @@ initReactFastclick();
       })
     })
     //监听hash变化，控制历史记录
-    window.addEventListener("hashchange",function(e){
-     if(e.newURL.indexOf("#city")==-1 && e.oldURL.indexOf("#city")>0){
-      _pubSub.publish('getInfo',{
-        isShow:false,
-        type:"city"
-        })
-     }
-    })
+    // window.addEventListener("hashchange",function(e){
+    //  if(e.newURL.indexOf("#city")==-1 && e.oldURL.indexOf("#city")>0){
+    //   _pubSub.publish('getInfo',{
+    //     isShow:false,
+    //     type:"city"
+    //     })
+    //  }
+    // })
   }
 }
 
 //路由分发
 export default class extends Component{
    constructor(props){
-     super(props)
+     super(props);
+     const name="jack";
    }
    render(){
      return(
@@ -76,6 +72,7 @@ export default class extends Component{
         <div>
           <Route exact path="/" component={App}/>
           <Route path="/salary" component={SalaryResult}/>
+          <Route path="/city" component={CalCityWrap}/>
           <Route path="/yearend" component={YearendResult}/>
         </div>
       </Router>

@@ -1,9 +1,15 @@
 @import "../../common/scss/pxToRem.scss";
 .item-select{
-  div{
+  section,a{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  em{
+    display: block;
     padding: 0 20px;
   }
-  div:after{
+  em:after{
     content: "";
     display: block;
     position: absolute;

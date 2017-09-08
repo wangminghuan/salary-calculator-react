@@ -27,14 +27,14 @@ export default class SubmitComponent extends Component{
       },1000)
    }else{
      //react-router 4.0+版本吧push方法移动到了history对象下
-     //2.x版本是this.context.router.push("/salary");
-    
-    if(this.state.currentTab==0){
-      this.context.router.history.push("/salary");
-    }else{
-      this.context.router.history.push("/yearend");
-    }
-    console.log(this.state);
+     //2.x版本是this.context.router.push("/salary"); 数据可以通过state或者query的方式进行传递
+     this.state.currentTab==0 ? this.context.router.history.push({
+      pathname:'/salary',
+      state:{data:this.state},
+      }) : this.context.router.history.push({
+        pathname:'/yearend',
+        state:{data:this.state},
+      })
    }
   }
   render(){
