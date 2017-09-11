@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import { HashRouter as Router, Route, Link, hashHistory} from 'react-router-dom';
+import pubSub from "PubSub";
 import config from "../../common/config/config";
 import CalHeaderTab from "../components/CalHeaderTab";
 import CalSalary from "../components/CalSalary";
@@ -14,6 +15,8 @@ initReactFastclick();
  class  App extends Component{
   constructor(props){
     super(props);
+    //建立一个全局变量，用于订阅发布通道
+    window._pubSub=new pubSub();
     // this.localData=JSON.parse(JSON.stringify(window.localStorage.getItem("__select")));
     this.configIndex=isNaN(parseInt(window.localStorage.getItem("__select")))?0:parseInt(window.localStorage.getItem("__select"));
     this.state={
@@ -57,6 +60,10 @@ initReactFastclick();
     //     })
     //  }
     // })
+  }
+  componentWillUnmount(){
+    _pubSub.unsubscribeAll();
+    //移除所有绑定的事件，防止重复绑定
   }
 }
 

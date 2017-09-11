@@ -43,9 +43,8 @@ class TabComponent extends Component{
   componentDidMount(){
     const wrap=this.refs.section;
     this.setState({
-      curTabConHg:wrap.getElementsByTagName("section")[1].offsetHeight
+      curTabConHg:wrap.getElementsByClassName("tab-item")[1].offsetHeight
     })
-    
   }
 }
 

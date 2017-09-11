@@ -50,7 +50,7 @@ export default class SubmitComponent extends Component{
       if(!data.type || data.type=="city") return;
       let newData=this.state.userSalaySelect;
       newData[data.type]=data.select;
-       this.setState({
+      this.setState({
          userSalaySelect:newData
        })
     })
@@ -58,13 +58,13 @@ export default class SubmitComponent extends Component{
     _pubSub.subscribe("getInput",(data)=>{
       let newData=this.state.userSalayInput;
       newData[data.type]=data.value;
-        this.setState({
+      this.setState({
           userSalayInput:newData
         })
     })
 
     _pubSub.subscribe("tabIndex",(data)=>{
-        this.setState({
+      this.setState({
           currentTab:data.current
         })
     })
