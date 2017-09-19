@@ -51,15 +51,6 @@ initReactFastclick();
         currentData:config[data.index]
       })
     })
-    //监听hash变化，控制历史记录
-    // window.addEventListener("hashchange",function(e){
-    //  if(e.newURL.indexOf("#city")==-1 && e.oldURL.indexOf("#city")>0){
-    //   _pubSub.publish('getInfo',{
-    //     isShow:false,
-    //     type:"city"
-    //     })
-    //  }
-    // })
   }
   componentWillUnmount(){
     _pubSub.unsubscribeAll();
