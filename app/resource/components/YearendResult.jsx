@@ -18,5 +18,8 @@ export default class extends Component{
     console.log(this.renderData);
     //接收到的配置数据
     console.log(config[this.cityIndex])
+    if(!this.renderData){
+      console.log("数据异常，请退出重试~")
+    }
   }
 }
